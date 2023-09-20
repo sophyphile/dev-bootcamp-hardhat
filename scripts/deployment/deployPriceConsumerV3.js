@@ -8,17 +8,17 @@ const {
 async function deployPriceConsumerV3(chainId) {
     let priceFeedAddress;
 
-    if (developmentChains.includes(network.name)) {
-        const DECIMALS = "18"
-        const INITIAL_PRICE = "200000000000000000000"
+    // if (developmentChains.includes(network.name)) {
+    //     const DECIMALS = "18"
+    //     const INITIAL_PRICE = "200000000000000000000"
 
-        const mockV3AggregatorFactory = await ethers.getContractFactory("MockV3Aggregator")
-        const mockV3Aggregator = await mockV3AggregatorFactory.deploy(DECIMALS, INITIAL_PRICE)
+    //     const mockV3AggregatorFactory = await ethers.getContractFactory("MockV3Aggregator")
+    //     const mockV3Aggregator = await mockV3AggregatorFactory.deploy(DECIMALS, INITIAL_PRICE)
 
-        priceFeedAddress = mockV3Aggregator.address;
-    } else {
-        priceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
-    }
+    //     priceFeedAddress = mockV3Aggregator.address;
+    // } else {
+    priceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
+    // }
 
     const priceConsumerV3Factory = await ethers.getContractFactory("PriceConsumerV3")
     const priceConsumerV3 = await priceConsumerV3Factory.deploy(priceFeedAddress)

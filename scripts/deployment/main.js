@@ -10,9 +10,10 @@ const { deployApiConsumer } = require("./deployApiConsumer")
 const { deployAutomationCounter } = require("./deployAutomationCounter")
 const { deployPriceConsumerV3 } = require("./deployPriceConsumerV3")
 const { deployRandomNumberConsumer } = require("./deployRandomNumberConsumer")
-const {
-    deployRandomNumberDirectFundingConsumer,
-} = require("./deployRandomNumberDirectFundingConsumer")
+// const {
+//     deployRandomNumberDirectFundingConsumer,
+// } = require("./deployRandomNumberDirectFundingConsumer")
+const { deployMyFirstSmartContract } = require("./deployMyFirstSmartContract")
 
 async function main() {
     await run("compile")
@@ -22,6 +23,7 @@ async function main() {
     await deployPriceConsumerV3(chainId)
     await deployRandomNumberConsumer(chainId)
     await deployRandomNumberDirectFundingConsumer(chainId)
+    await deployMyFirstSmartContract(chainId)
 }
 
 // We recommend this pattern to be able to use async/await everywhere

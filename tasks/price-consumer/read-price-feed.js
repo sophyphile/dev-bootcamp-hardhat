@@ -17,19 +17,19 @@ task("read-price-feed", "Gets the latest price from a Chainlink Price Feed")
         const code = await signer.provider.getCode(contractAddr);
 
         if (code === "0x") {
-            // contractAddr is not a contract account
-            console.log(`The contract with address ${contractAddr} does not exist on chain ${networkId}. Deploying it...`)
+        //     // contractAddr is not a contract account
+        //     console.log(`The contract with address ${contractAddr} does not exist on chain ${networkId}. Deploying it...`)
 
             let priceFeedAddress;
-            if (developmentChains.includes(networkId)) {
-                const DECIMALS = "18"
-                const INITIAL_PRICE = "200000000000000000000"
-                const mockV3AggregatorFactory = await ethers.getContractFactory("MockV3Aggregator")
-                const mockV3Aggregator = await mockV3AggregatorFactory.deploy(DECIMALS, INITIAL_PRICE)
-                priceFeedAddress = mockV3Aggregator.address;
-            } else {
-                priceFeedAddress = networkConfig[network.config.chainId]["ethUsdPriceFeed"]
-            }
+        //     if (developmentChains.includes(networkId)) {
+        //         const DECIMALS = "18"
+        //         const INITIAL_PRICE = "200000000000000000000"
+        //         const mockV3AggregatorFactory = await ethers.getContractFactory("MockV3Aggregator")
+        //         const mockV3Aggregator = await mockV3AggregatorFactory.deploy(DECIMALS, INITIAL_PRICE)
+        //         priceFeedAddress = mockV3Aggregator.address;
+        //     } else {
+            priceFeedAddress = networkConfig[network.config.chainId]["ethUsdPriceFeed"]
+        //     }
 
             priceFeedConsumerContract = await PriceFeedConsumerContract.deploy(priceFeedAddress)
         } else {

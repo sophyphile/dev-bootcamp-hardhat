@@ -27,6 +27,7 @@ task(
                 `Random Numbers are: ${firstRandomNumber.toString()} and ${secondRandomNumber.toString()}`
             )
         } catch (error) {
+            console.error(error);
             if (["hardhat", "localhost", "ganache"].includes(network.name)) {
                 console.log(
                     "You'll have to manually update the value since you're on a local chain!"

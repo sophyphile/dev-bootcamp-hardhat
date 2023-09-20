@@ -1,6 +1,7 @@
 require("@nomicfoundation/hardhat-toolbox")
 require("./tasks")
 require("dotenv").config()
+require("solidity-coverage")
 
 const COMPILER_SETTINGS = {
     optimizer: {
@@ -24,7 +25,7 @@ const MUMBAI_RPC_URL =
     process.env.MUMBAI_RPC_URL || "https://polygon-mumbai.g.alchemy.com/v2/your-api-key"
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 // optional
-const MNEMONIC = process.env.MNEMONIC || "Your mnemonic"
+// const MNEMONIC = process.env.MNEMONIC || "Your mnemonic"
 const FORKING_BLOCK_NUMBER = parseInt(process.env.FORKING_BLOCK_NUMBER) || 0
 
 // Your API key for Etherscan, obtain one at https://etherscan.io/
@@ -56,8 +57,8 @@ module.exports = {
             // If you want to do some forking set `enabled` to true
             forking: {
                 url: MAINNET_RPC_URL,
-                blockNumber: FORKING_BLOCK_NUMBER,
-                enabled: false,
+                // blockNumber: FORKING_BLOCK_NUMBER,
+                enabled: true,
             },
             chainId: 31337,
         },
@@ -90,6 +91,12 @@ module.exports = {
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
             chainId: 80001,
         },
+        goerli: {
+            url: process.env.KOVAN_RPC_URL,
+            accounts: [process.env.PRIVATE_KEY],
+            saveDeployments: true,
+            chainId: 5
+        }
     },
     defaultNetwork: "hardhat",
     etherscan: {

@@ -32,7 +32,7 @@ task(
             " random number request successfully called. Transaction Hash: ",
             transaction.hash,
             " requestId: ",
-            requestId.toString()
+            // requestId.toString()
         )
         console.log("Run the following to read the returned random number:")
         console.log(
